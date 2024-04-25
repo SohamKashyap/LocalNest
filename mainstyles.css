@@ -1,0 +1,702 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Global styles */
+body, html {
+  height: 100%;
+overflow: visible;
+font-family: Arial, sans-serif;
+background-color: black;
+color: white;
+}
+
+.logo-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black; /* Change background color to black */
+  z-index: 9999;
+  transition: opacity 1s ease-in-out;
+}
+
+.logo {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+.content {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.logo-container.minimize {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo-container.minimize + .content {
+  opacity: 1;
+}
+header {
+  height: 8%;
+  background-color: black;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+main {
+  height: 70%; /* Adjusted height for better visibility */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+footer {
+  height: 10%;
+  background-color:black;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header img {
+  max-width: 300px;
+  max-height: 150px;
+  filter: brightness(1.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Center elements on mobile */
+  }
+
+  header img {
+    margin-bottom: 1rem; /* Add spacing for mobile view */
+  }
+}
+
+
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+nav img {
+  max-width: 200px; /* Adjust the maximum width of the image */
+  max-height: 100px; /* Adjust the maximum height of the image */
+  filter: brightness(1.5); /* Example filter: Increase brightness */
+}
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px; /* Initially hidden off the screen */
+  width: 250px;
+  height: 100%;
+  background-color: black;
+  transition: left 0.3s ease-in-out;
+  z-index: 9998; /* Behind the logo container */
+  overflow-y: auto; /* Enable scrolling if needed */
+}
+
+.sidebar.active {
+  left: 0; /* Move sidebar into view */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.sidebar ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+/* Add this CSS to style the button */
+#toggleSidebar {
+width: 40px;
+height: 40px;
+background-color: #333;
+border: none;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#toggleSidebar:hover {
+background-color: #555;
+}
+
+#toggleSidebar::before {
+content: "+"; /* Add any symbol you want */
+color: white;
+font-size: 24px;
+}
+/* Add this CSS to style the close sidebar button */
+#closeSidebar {
+width: 40px;
+height: 40px;
+background-color: #333;
+border: none;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+#closeSidebar:hover {
+background-color: #555;
+}
+
+#closeSidebar::before {
+content: "×"; 
+color: white; 
+font-size: 24px;
+}
+
+  .auth-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 10px;
+  right: 20px; /* Adjust this value to your preference */
+  z-index: 9999; /* Ensure buttons appear on top */
+}
+
+.auth-buttons a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px; /* Adjust padding */
+  border-radius: 25px; /* Rounded corners */
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 14px; /* Adjust font size */
+  background-color: #ff3333;  /* Button background color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+.auth-buttons a:hover {
+  background-color: #cc0000;/* Hover background color */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Hover shadow */
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 768px) {
+  .auth-buttons {
+      position: absolute;
+      top: auto;
+      bottom: 20px; /* Position at the bottom */
+      transform: none;
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      right: 0;
+      gap: 8px;
+  }
+
+  .auth-buttons a {
+      padding: 4px 10px; /* Adjust padding for smaller screens */
+      font-size: 8px; /* Adjust font size for smaller screens */
+  }
+}
+
+.sidebar ul li {
+margin-bottom: 15px;
+display: flex;
+align-items: center;
+transition: transform 0.3s ease, background-color 0.3s ease; /* Adding transitions */
+}
+
+.sidebar ul li a {
+color: white;
+text-decoration: none;
+font-size: 18px;
+padding: 10px;
+border-radius: 10px; /* Rounded corners */
+transition: color 0.3s ease, background-color 0.3s ease; /* Adding transitions */
+}
+
+.sidebar ul li a:hover {
+color: #fff;   /* Change color on hover */
+background-color: #ff3333; /* Background color on hover */
+}
+
+.sidebar ul li svg {
+margin-right: 10px; /* Adjust the spacing between icon and text */
+fill: #fff; /* Change the color of the SVG icon */
+transition: fill 0.3s ease; /* Adding transition for icon color */
+}
+
+.sidebar ul li:hover {
+transform: translateX(5px); /* Adding a slight movement on hover */
+}
+
+.sidebar ul li.active a {
+color: #2a9d8f; /* Highlight active link color */
+background-color: #fff; /* Highlight active link background color */
+}
+
+/* Add a subtle gradient background for the sidebar */
+.sidebar {
+background: linear-gradient(180deg, #000000 0%, #111111 100%);
+}
+
+/* Style for close sidebar button */
+#closeSidebar {
+color: #fff;
+font-size: 24px;
+background: none;
+border: none;
+cursor: pointer;
+transition: color 0.3s ease;
+}
+
+#closeSidebar:hover {
+color: #2a9d8f; /* Change color on hover */
+}
+
+
+.content {
+opacity: 0;
+transition: opacity 1s ease-in-out;
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+background-color: black;
+padding: 20px;
+border-radius: 10px;
+text-align: center;
+}
+
+.content img {
+width: 35%; /* Set the image size to 40% */
+height: auto; /* Maintain aspect ratio */
+display: block;
+margin: 0 auto;
+max-width: 100%; /* Ensure responsiveness */
+} /* Media query for responsiveness on smaller devices */
+@media screen and (max-width: 768px) {
+.content img {
+  width: 80%; /* Adjust image size for smaller screens */
+}
+}
+
+
+
+.features {
+list-style: none;
+display: flex;
+justify-content: space-around;
+margin-top: 20px;
+}
+
+.feature {
+cursor: pointer;
+color: white;
+font-size: 18px;
+padding: 10px 30px;
+border-radius: 25px;
+background-color: #ff3333;
+transition: background-color 0.3s ease;
+margin-right: 10px; /* Add margin between list items */
+}
+
+.feature:hover {
+background-color: #cc0000;
+}
+
+.content-details {
+width: 50%;
+margin: 20px auto;
+overflow: hidden;
+border: 1px solid #666;
+padding: 20px;
+height: 250px;
+position: relative;
+background-color: #222;
+color: white;
+}
+.content-item {
+display: none;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+transition: opacity 0.5s ease-in-out;
+color: white;
+}
+
+.content-item:first-child {
+display: block;
+}
+
+@media screen and (max-width: 768px) {
+.logo {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.content {
+  padding: 10px;
+}
+
+.content img {
+  width: 70%;
+}
+
+.features {
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature {
+  margin-bottom: 10px;
+}
+}
+
+.content-details {
+width: calc(100% - 40px);
+margin: 20px auto;
+overflow: hidden;
+border: 5px solid transparent; /* Set initial border color to transparent */
+border-image: linear-gradient(to right, #3498db, #ff3333); /* Add gradient border */
+border-image-slice: 1; /* Ensure the entire border is covered by the gradient */
+}
+
+
+
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+.content-details {
+width: 100%;
+max-height: none;
+padding: 10px;
+}
+}
+
+
+/* Styles for Split Page */
+.split-page {
+height: 90vh; /* Reduced height for the split-page */
+width: 95%; /* Reduced width */
+overflow: hidden; /* Hide overflow */
+display: flex;
+border-radius: 20px; /* Rounded corners */
+margin: 5vh auto; /* Center the split-page */
+}
+
+.left-part,
+.right-part {
+height: 100%; /* Full height of the split-page */
+width: 50%; /* Each part takes half of the split-page */
+box-sizing: border-box;
+padding: 20px; /* Add padding for content spacing */
+}
+
+.left-part {
+background-color: #B19CD9; /* Light purple for Left Part */
+color: white; /* Text color for Left Part */
+}
+
+.right-part {
+background-color: #4B0082; /* Different purple for Right Part */
+color: white; /* Text color for Right Part */
+}
+/* Styles for Split Page 2 */
+.split-page2 {
+height: 90vh; /* Reduced height for the split-page */
+width: 95%; /* Reduced width */
+overflow: hidden; /* Hide overflow */
+display: flex;
+border-radius: 20px; /* Rounded corners */
+margin: 5vh auto; /* Center the split-page */
+}
+
+.left-part2,
+.right-part2 {
+height: 100%; /* Full height of the split-page */
+width: 50%; /* Each part takes half of the split-page */
+box-sizing: border-box;
+padding: 20px; /* Add padding for content spacing */
+}
+
+.left-part2 {
+background-color: #90EE90; /* Light green for Left Part */
+color: white; /* Text color for Left Part */
+}
+
+.right-part2 {
+background-color: #006400 ; /* Different green for Right Part */
+color: white; /* Text color for Right Part */
+}
+/* Styles for Split Page 3 */
+.split-page3 {
+height: 90vh; /* Reduced height for the split-page */
+width: 95%; /* Reduced width */
+overflow: hidden; /* Hide overflow */
+display: flex;
+border-radius: 20px; /* Rounded corners */
+margin: 5vh auto; /* Center the split-page */
+}
+
+.left-part3,
+.right-part3 {
+height: 100%; /* Full height of the split-page */
+width: 50%; /* Each part takes half of the split-page */
+box-sizing: border-box;
+padding: 20px; /* Add padding for content spacing */
+}
+
+.left-part3 {
+background-color: #ff9999; /* Light red for Left Part */
+color: white; /* Text color for Left Part */
+}
+
+.right-part3 {
+background-color: #ff3333
+; /* Different red for Right Part */
+color: white; /* Text color for Right Part */
+}
+/* Styles for Split Page 3 */
+.split-page3 {
+height: 90vh; /* Reduced height for the split-page */
+width: 95%; /* Reduced width */
+overflow: hidden; /* Hide overflow */
+display: flex;
+border-radius: 20px; /* Rounded corners */
+margin: 5vh auto; /* Center the split-page */
+}
+
+.left-part3,
+.right-part3 {
+height: 100%; /* Full height of the split-page */
+width: 50%; /* Each part takes half of the split-page */
+box-sizing: border-box;
+padding: 20px; /* Add padding for content spacing */
+}
+
+.left-part3 {
+background-color: #ff9999; /* Light red for Left Part */
+color: white; /* Text color for Left Part */
+}
+
+.right-part3 {
+background-color: #ff3333
+; /* Different red for Right Part */
+color: white; /* Text color for Right Part */
+}
+
+
+
+
+
+
+
+.join {
+position: fixed;
+bottom: 15%; /* Adjust vertical position */
+left: 50%;
+transform: translateX(-50%);
+width: 70%; /* Set button width to cover 70% of the screen */
+text-align: center;
+}
+
+/* Styles for the button */
+.join-button {
+display: block;
+width: 30vw;
+height: 30vw; /* Setting height equal to width */
+padding: 20px;
+margin: 10% auto; /* Adjusted margin for better positioning */
+border-radius: 50%; /* Creating a perfect circle */
+border: none;
+font-size: 24px; /* Increase font size for a larger and more attractive appearance */
+font-weight: bold; /* Set font weight to bold */
+color: white; /* Set text color*/
+background-color: #ff3333; /* Default background color */
+transition: background-color 0.3s ease;
+cursor: pointer;
+text-align: center;
+text-decoration: none;
+box-sizing: border-box;
+}
+
+
+/* Ensuring the button covers 70% of the screen height */
+body,
+html {
+height: 100%;
+margin: 0;
+}
+
+/* Additional styling for responsiveness */
+@media (max-width: 768px) {
+.join-button {
+font-size: 18px;
+}
+}
+
+
+/*IMAGES ON COLOURFULL BOXES */
+
+.left-part {
+position: relative; /* Create a reference point for absolute positioning */
+width: 50%; /* Or adjust to your preferred width */
+padding: 10px; /* Optional padding for visual spacing */
+}
+
+.left-part img {
+display: block; /* Ensure image takes full width */
+max-width: 550px; /* Adjust for desired small size */
+max-height: 550px;
+object-fit: contain; /* Fit image within container, showing borders if needed */
+position: absolute; /* Position independently */
+top: 50%; /* Vertically center the image */
+left: 90px; /* Position at the left inner edge of the div */
+transform: translate(0, -50%); /* Counteract half displacement from top positioning */
+}
+/* Media queries for different screen sizes */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .left-part {
+  width: 50%; /* Occupy full width on smaller screens */
+  padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .left-part img {
+  max-width: 170px; 
+  left: 6%; /* Adjust horizontal position for smaller screens */
+  }
+}
+
+.left-part2 {
+position: relative; /* Create a reference point for absolute positioning */
+width: 50%; /* Or adjust to your preferred width */
+padding: 10px; /* Optional padding for visual spacing */
+}
+
+.left-part2 img {
+display: block; /* Ensure image takes full width */
+max-width: 400px; /* Adjust for desired small size */
+max-height: 400px;
+object-fit: contain; /* Fit image within container, showing borders if needed */
+position: absolute; /* Position independently */
+top: 50%; /* Vertically center the image */
+left: 160px; /* Position at the left inner edge of the div */
+transform: translate(0, -50%); /* Counteract half displacement from top positioning */
+}
+/* Media queries for different screen sizes */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .left-part2 {
+  width: 50%; /* Occupy full width on smaller screens */
+  padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .left-part2 img {
+  max-width: 160px; 
+  left: 9%; /* Adjust horizontal position for smaller screens */
+  }
+}
+
+.left-part3 {
+position: relative; /* Create a reference point for absolute positioning */
+width: 50%; /* Or adjust to your preferred width */
+padding: 10px; /* Optional padding for visual spacing */
+}
+
+.left-part3 img {
+display: block; /* Ensure image takes full width */
+max-width: 450px; /* Adjust for desired small size */
+max-height: 450px;
+object-fit: contain; /* Fit image within container, showing borders if needed */
+position: absolute; /* Position independently */
+top: 50%; /* Vertically center the image */
+left: 150px; /* Position at the left inner edge of the div */
+transform: translate(0, -50%); /* Counteract half displacement from top positioning */
+}
+/* Media queries for different screen sizes */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
+  .left-part3 {
+  width: 50%; /* Occupy full width on smaller screens */
+  padding: 20px; /* Adjust padding for smaller screens */
+  }
+
+  .left-part3 img {
+  max-width: 170px; 
+  left: 4%; /* Adjust horizontal position for smaller screens */
+  }
+}
+
+.left-part4 {
+position: relative; /* Create a reference point for absolute positioning */
+width: 50%; /* Or adjust to your preferred width */
+padding: 10px; /* Optional padding for visual spacing */
+}
+
+.left-part4 img {
+display: block; /* Ensure image takes full width */
+max-width: 450px; /* Adjust for desired small size */
+max-height: 450px;
+object-fit: contain; /* Fit image within container, showing borders if needed */
+position: absolute; /* Position independently */
+top: 50%; /* Vertically center the image */
+left: 150px; /* Position at the left inner edge of the div */
+transform: translate(0, -50%); /* Counteract half displacement from top positioning */
+}
+     /* Media queries for different screen sizes */
+     @media (max-width: 768px) { /* Adjust breakpoint as needed */
+        .left-part4 {
+        width: 50%; /* Occupy full width on smaller screens */
+        padding: 20px; /* Adjust padding for smaller screens */
+        }
+    
+        .left-part4 img {
+        max-width: 170px; 
+        left: 4%; /* Adjust horizontal position for smaller screens */
+        }
+    } 
+
