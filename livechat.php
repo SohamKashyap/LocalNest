@@ -34,16 +34,18 @@
                  }
             }
 
-        body {
-            background: black;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            flex-direction: column; /* Stack items vertically */
-            color: #fff; /* Text color for the body */
-        }
+            body {
+                background-image: url("Images/pexels-francesco-ungaro-4638772.jpg"); /* Add your image URL here */
+                background-size: cover; /* Cover the entire background */
+                background-position: center; /* Center the background image */
+                margin: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                flex-direction: column; /* Stack items vertically */
+                color: #fff; /* Text color for the body */
+            }
 
         #small-logo {
         position: fixed; 
