@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Chat</title>
     <style>
+        /* Smaller screens (e.g., smartphones) */
+            @media only screen and (max-width: 600px) {
+                body {
+                    font-size: 14px; /* Adjust font size for smaller screens */
+                }
+                #wrapper {
+                    flex-direction: column; /* Stack items vertically on smaller screens */
+                    margin-left:auto;
+                }
+                #left-pannel {
+                    min-width: auto; /* Allow left panel to shrink */
+                }
+                #right-pannel {
+                    min-width: auto; /* Allow right panel to shrink */
+                }
+                #header {
+                    min-width: auto; /* Allow header to shrink */
+                }
+                #inner_left_pannel {
+                    min-width: auto; /* Allow inner left panel to shrink */
+                }
+                #inner_right_pannel {
+                    min-width: auto; /* Allow inner right panel to shrink */
+                }
+                #top-logo {
+                      margin-right: -172px; /* Center top logo */
+                 }
+            }
+
         body {
             background: black;
             margin: 0;
